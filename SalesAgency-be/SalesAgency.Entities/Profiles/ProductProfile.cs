@@ -3,12 +3,10 @@ using SalesAgency.Entities.Data;
 using SalesAgency.Entities.DTOs.Product;
 
 namespace SalesAgency.Entities.Profiles;
-
-public class ProductPorfile: Profile
+public class ProductProfile : Profile
 {
-  public ProductPorfile()
+  public ProductProfile()
   {
-    CreateMap<TProduct,GetProductDTO>();
-    CreateMap<CreateUpdateProductDTO,TProduct>();
+    CreateMap<TProduct, GetProductListItemDTO>();
   }
 }

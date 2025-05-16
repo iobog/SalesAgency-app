@@ -5,11 +5,12 @@ using SalesAgency.Entities.Login;
 
 namespace SalesAgency.Entities.Profiles;
 
+
 public class UserProfile : Profile
 {
   public UserProfile()
   {
-    CreateMap<TUser, GetUserDTO>();
-    CreateMap<TUser, LoginResponseDTO>();
+    CreateMap<TUser, LoginResponseDTO>()
+      .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.Email));
   }
 }
