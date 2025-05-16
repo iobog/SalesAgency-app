@@ -1,0 +1,9 @@
+﻿@page
+@using Microsoft.AspNetCore.Authorization
+@model MyApp.Namespace.DashboardModel
+@attribute [Authorize]
+@{
+}
+
+<div>Dashboard</div>
+<p>Salut, @Model.Email</p>

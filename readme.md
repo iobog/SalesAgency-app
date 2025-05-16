@@ -1,0 +1,1 @@
+dotnet ef dbcontext scaffold "Server=localhost,1433;Database=Agentie;User Id=AgencyDev;Password=Parola2024;TrustServerCertificate=True;" Microsoft.EntityFrameworkCore.SqlServer --output-dir ../SalesAgency.Entities/Data --context-dir ../SalesAgency.Entities/Data --context AppDbContext --use-database-names --force --no-onconfiguring
