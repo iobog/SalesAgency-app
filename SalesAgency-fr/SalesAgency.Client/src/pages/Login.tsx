@@ -15,6 +15,7 @@ const Login = () => {
       login("mocked-bearer-token");
       navigate("/products");
     }
+    
   };
 
   return (

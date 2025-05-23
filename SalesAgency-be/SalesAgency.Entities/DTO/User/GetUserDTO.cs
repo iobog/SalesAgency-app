@@ -1,4 +1,4 @@
-namespace SalesAgency.Entities.DTOs.User;
+namespace SalesAgency.Entities.DTO.User;
 
 public class GetUserDTO
 {

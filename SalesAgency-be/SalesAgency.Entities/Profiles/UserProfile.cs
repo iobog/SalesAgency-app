@@ -1,7 +1,7 @@
 using AutoMapper;
 using SalesAgency.Entities.Data;
-using SalesAgency.Entities.DTOs.User;
-using SalesAgency.Entities.Login;
+using SalesAgency.Entities.DTO.Login;
+using SalesAgency.Entities.DTO.User;
 
 namespace SalesAgency.Entities.Profiles;
 
@@ -12,5 +12,6 @@ public class UserProfile : Profile
   {
     CreateMap<TUser, LoginResponseDTO>()
       .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.Email));
+    CreateMap<TUser, GetUserDTO>();
   }
 }

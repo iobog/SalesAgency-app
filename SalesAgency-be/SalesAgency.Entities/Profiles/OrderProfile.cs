@@ -8,14 +8,24 @@ public class OrderProfile : Profile
 {
   public OrderProfile()
   {
+    CreateMap<TOrder, GetOrderDTO>();
+
     CreateMap<TOrder, GetOrderListItemDTO>()
-      .ForMember(dest => dest.Client, opt => opt.MapFrom(src => src.Client.Name))
-      .ForMember(dest => dest.User, opt => opt.MapFrom(src => src.User.Name))
-      .ForMember(dest => dest.CountProducts, opt => opt.MapFrom(src => src.TOrderProducts.Count));
-    CreateMap<TOrderProduct, CreateOrderProductDTO>()
-      .ForMember(dest => dest.ProductId, opt => opt.MapFrom(src => src.ProductId))
-      .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Product.Name))
-      .ForMember(dest => dest.Price, opt => opt.MapFrom(src => src.Product.Price))
-      .ForMember(dest => dest.Quantity, opt => opt.MapFrom(src => src.Quantity));
+      .ForMember(
+        destinationMember => destinationMember.CountProducts,
+        memberOptions => memberOptions.MapFrom(
+          sourceMember => sourceMember.TOrderProducts.Count
+        )
+      )
+      .ForMember(
+        destinationMember => destinationMember.Client,
+        memberOptions => memberOptions.MapFrom(
+          sourceMember => sourceMember.Client.Name
+        )
+      );;
+
+
+    CreateMap<CreateUpdateOrderDTO, TOrder>();
   }
 }
+

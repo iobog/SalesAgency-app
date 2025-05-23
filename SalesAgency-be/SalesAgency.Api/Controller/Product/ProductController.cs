@@ -3,10 +3,10 @@ using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SalesAgency.Entities.Data;
-using SalesAgency.Entities.DTOs.Product;
+using SalesAgency.Entities.DTO.Product;
 namespace SalesAgency.Api.Controller.Product;
 
-[Route("api")]
+[Route("api/products")]
 [ApiController]
 public class ProductController: ControllerBase
 {
@@ -19,7 +19,7 @@ public class ProductController: ControllerBase
     _mapper = mapper;
   }
 
-  [Route("products")]
+  
   [HttpGet]
   public async Task<ActionResult<IEnumerable<GetProductDTO>>> GetAllProducts()
   { 
@@ -40,7 +40,7 @@ public class ProductController: ControllerBase
       {
         return NotFound();
       }
-      return Ok(_mapper.Map<GetProductDTO>(client));
+      return Ok(client);
     }
     catch(Exception e)
     {
@@ -91,43 +91,6 @@ public class ProductController: ControllerBase
     }
 
   }
-  //PATCH api/commands/{id}
-  // [HttpPatch("{id}")]
-  // public async Task<ActionResult> PartialTaskUpdateAsync(int id,JsonPatchDocument<CreateUpdateTaskDTO> patchDoc)
-  // {
-  //   try
-  //   {
-  //     var taskModelFromDb = await _db.TTasks
-  //       .Where(_ => _.Id == id)
-  //       .FirstOrDefaultAsync();
-
-  //     if(taskModelFromDb == null) 
-  //     {
-  //       return NotFound();
-  //     }
-
-  //     var taskToPatch = _mapper.Map<CreateUpdateTaskDTO>(taskModelFromDb);
-  //     patchDoc.ApplyTo(taskToPatch,ModelState);
-
-  //     if(!TryValidateModel(taskToPatch))
-  //     {
-  //       return ValidationProblem(ModelState);
-  //     }
-
-  //     _mapper.Map(taskToPatch,taskModelFromDb);
-  //     _db.Update(taskModelFromDb);
-  //     await _db.SaveChangesAsync();
-
-  //     return NoContent();
-  //   }
-  //   catch(Exception e)
-  //   {
-  //     return StatusCode(StatusCodes.Status500InternalServerError,e.Message);
-  //   }
-  // }
-
-
-  
 
   [HttpDelete("{id}")]
   public async Task<ActionResult> DeleteProduct(int id)
