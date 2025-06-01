@@ -12,7 +12,7 @@ export default function SelectProductDialog({ isOpen, onClose, onSelect }: any) 
     listProducts().then((products) => {
       setProducts(products)
     })
-  }, [])
+  }, [isOpen == true])
 
   const onCancel = () => {
     setSelectedProduct(null);

@@ -3,7 +3,8 @@ import React, { createContext, useContext, useState } from "react";
 
 export interface AuthContextProps {
   token: string;
-  login: (token: string) => {};
+  email: string;
+  login: (token: string, email: string) => {};
   logout: () => {};
 }
 
@@ -15,19 +16,24 @@ export interface AuthProviderProps {
 
 export const AuthProvider = ({ children } : AuthProviderProps) => {
   const [token, setToken] = useState(localStorage.getItem("token") || null);
+  const [email, setEmail] = useState(localStorage.getItem("email") || null);
 
-  const login = (newToken: string) => {
+  const login = (newToken: string, newEmail: string) => {
     localStorage.setItem("token", newToken);
+    localStorage.setItem("email", newEmail);
     setToken(newToken);
+    setEmail(newEmail);
   };
 
   const logout = () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("email");
     setToken(null);
+    setEmail(null);
   };
 
   return (
-    <AuthContext.Provider value={{ token, login, logout } as AuthContextProps}>
+    <AuthContext.Provider value={{ token, email, login, logout } as AuthContextProps}>
       {children}
     </AuthContext.Provider>
   );

@@ -1,11 +1,11 @@
-import { CLIENTS_BASE_URL, ORDERS_BASE_URL, PRODUCTS_BASE_URL } from "../utils/const";
+import { BASE_URL, CLIENTS_BASE_URL, ORDERS_BASE_URL, PRODUCTS_BASE_URL } from "../utils/const";
 import type { CreateOrderDTO, GetClientListItemDTO, GetOrderListItemDTO, GetProductListItemDTO, LoginRequest, LoginResponse } from "./interfaces";
 
 const API_ROOT_URL = "http://localhost:5009/"
 
 
-export async function login(body: LoginRequest): Promise<LoginResponse> {
-  const url = new URL('api/users/login', API_ROOT_URL);
+export async function loginRequest(body: LoginRequest): Promise<LoginResponse> {
+  const url = new URL('api/login', API_ROOT_URL);
   const response = await fetch(url.toString(), {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -64,17 +64,25 @@ export async function listProducts(): Promise<GetProductListItemDTO[]> {
   return response;
 }
 
-export async function createOrder(body: CreateOrderDTO): Promise<void> {
-  const url = new URL(`api/orders`, API_ROOT_URL);
+export async function createOrder(body: CreateOrderDTO): Promise<any> {
   const token = localStorage.getItem('token');
-  const request = await fetch(url.toString(), {
+  console.log("create request!");
+
+  const response = await fetch(ORDERS_BASE_URL, {
     method: 'POST',
-    body: JSON.stringify(body),
     headers: {
       "Authorization": `Bearer ${token}`,
       "Content-Type": "application/json"
-    }
-  })
-  const response = await request.json();
-  return response;
+    },
+    body: JSON.stringify(body),
+  });
+ 
+  console.log("response!");
+
+  if (!response.ok) {
+    const errorText = await response.text();
+    throw new Error(`Failed to create order: ${errorText}`);
+  }
+
+  return await response.json();
 }

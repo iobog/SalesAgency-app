@@ -9,7 +9,6 @@ public class OrderProfile : Profile
   public OrderProfile()
   {
     CreateMap<TOrder, GetOrderDTO>();
-
     CreateMap<TOrder, GetOrderListItemDTO>()
       .ForMember(
         destinationMember => destinationMember.CountProducts,
@@ -23,6 +22,7 @@ public class OrderProfile : Profile
           sourceMember => sourceMember.Client.Name
         )
       );;
+      
 
 
     CreateMap<CreateUpdateOrderDTO, TOrder>();

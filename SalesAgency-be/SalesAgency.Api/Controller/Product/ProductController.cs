@@ -1,5 +1,6 @@
 
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SalesAgency.Entities.Data;
@@ -8,6 +9,7 @@ namespace SalesAgency.Api.Controller.Product;
 
 [Route("api/products")]
 [ApiController]
+[Authorize]
 public class ProductController: ControllerBase
 {
   private readonly AppDbContext _db;

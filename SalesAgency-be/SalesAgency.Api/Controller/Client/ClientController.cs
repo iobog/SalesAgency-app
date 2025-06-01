@@ -2,14 +2,16 @@
 namespace SalesAgency.Api.Controller.Client;
 
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SalesAgency.Entities;
 using SalesAgency.Entities.Data;
 using SalesAgency.Entities.DTO.Client;
+
 [ApiController]
 [Route("api/clients")]
-//swagger
+[Authorize]
 public class ClientController:ControllerBase
 {
   private readonly AppDbContext _db;
