@@ -20,5 +20,5 @@ A simple full-stack application where sales agents can log in, place orders for 
 - [ASP.NET Web API](https://dotnet.microsoft.com/en-us/apps/aspnet/apis)
 - [Azure SQL Database](https://azure.microsoft.com/en-us/products/azure-sql/)
 
-## Project Structure
+
 
