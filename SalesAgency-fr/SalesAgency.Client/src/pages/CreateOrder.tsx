@@ -69,7 +69,8 @@ export default function CreateOrder() {
       setAddress("");
       setOrderProducts([]);
     } catch (error: any) {
-      console.error(error);
+      console.log(error);
+      
       alert("Eroare la salvarea comenzii.");
     }
   };

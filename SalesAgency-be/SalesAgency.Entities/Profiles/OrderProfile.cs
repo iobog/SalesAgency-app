@@ -13,7 +13,7 @@ public class OrderProfile : Profile
       .ForMember(
         destinationMember => destinationMember.CountProducts,
         memberOptions => memberOptions.MapFrom(
-          sourceMember => sourceMember.TOrderProducts.Count
+          sourceMember => sourceMember.TOrderProducts.Sum(p => p.Quantity)
         )
       )
       .ForMember(
